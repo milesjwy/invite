@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="preconnect" href="https://sf3-scmcdn-cn.feishucdn.com" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap">
+<title>婚礼请柬方向稿 · 2026.12.20</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f7f2e8'/%3E%3Cpath d='M16 24c-5-3.2-8-6-8-9.4A4.2 4.2 0 0 1 16 12a4.2 4.2 0 0 1 8 2.6c0 3.4-3 6.2-8 9.4z' fill='%237b2233'/%3E%3C/svg%3E">
+<style>
+:root{
+  --paper:#f5f0e8;
+  --paper-2:#efe8dc;
+  --card:#fbf8f1;
+  --ink:#22302e;
+  --accent:#5e7e8c;
+  --moss:#6b7f68;
+  --deep:#2c3e43;
+  --muted:#7b837d;
+  --line:#ded7c8;
+  --serif:"Noto Serif CJK SC","Noto Serif SC","Songti SC",serif;
+  --garamond:"EB Garamond","Noto Serif","Times New Roman",serif;
+  --script:"EB Garamond","Noto Serif",Georgia,serif;
+  --sans:"Noto Sans CJK SC","PingFang SC","Helvetica Neue",sans-serif;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* 纸面：极淡的中心提亮 + 四角压暗，让大面积底色不呆板 */
+body::before{
+  content:"";
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 50% 20%,rgba(255,253,247,.85),transparent 55%),
+    radial-gradient(100% 100% at 50% 110%,rgba(74,58,44,.08),transparent 60%);
+}
+
+.shell{position:relative;z-index:1;display:block}
+
+/* ---------------- 左栏：设计说明 ---------------- */
+
+.rail{padding:26px 22px 10px}
+
+.rail-k{
+  font-size:11.5px;letter-spacing:.2em;color:var(--muted);
+  margin:0 0 12px;
+}
+.eyebrow{
+  font-size:10.5px;letter-spacing:.26em;color:var(--muted);
+  text-transform:uppercase;margin:0;
+}
+
+.rail h1{
+  font-family:var(--serif);font-size:30px;line-height:1.35;
+  margin:0 0 10px;letter-spacing:.02em;
+}
+
+.rail-sub{color:var(--muted);font-size:13.5px;margin:0 0 22px;max-width:32em}
+
+.rail-nav{display:flex;gap:8px;overflow-x:auto;padding:0 0 6px;scrollbar-width:none}
+.rail-nav::-webkit-scrollbar{display:none}
+
+.rail-nav button{
+  flex:0 0 auto;
+  min-height:44px;padding:0 16px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);
+  color:var(--muted);font-family:var(--sans);font-size:13.5px;
+  cursor:pointer;white-space:nowrap;
+}
+.rail-nav button[aria-selected="true"]{
+  border-color:var(--accent);color:var(--accent);background:rgba(94,126,140,.10);
+}
+
+.rail-meta{display:none}
+.rail-points{display:none}
+
+/* ---------------- 右侧：屏幕 ---------------- */
+
+.stage{display:flex;flex-direction:column;align-items:center;padding:14px 12px 44px}
+
+.screen{
+  width:100%;max-width:390px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+  position:relative;
+}
+.screen.wide{max-width:560px}
+
+/* 屏幕内部统一内边距 */
+.view{padding:30px 24px 8px}
+.view[hidden]{display:none}
+
+.note{
+  max-width:390px;padding:14px 24px 0;margin:0;
+  font-size:12.5px;color:var(--muted);line-height:1.7;
+}
+.screen.wide + .note{max-width:560px}
+
+/* ---------------- 排印 ---------------- */
+
+.script{
+  font-family:var(--script);font-style:italic;
+  color:var(--accent);letter-spacing:.02em;
+}
+
+.names{
+  font-family:var(--serif);font-size:36px;line-height:1.3;
+  letter-spacing:.05em;margin:4px 0 0;
+}
+
+.hair{height:1px;background:var(--line);border:0;margin:26px 0}
+
+.sec{
+  font-family:var(--serif);font-size:19px;margin:0 0 12px;letter-spacing:.03em;
+}
+
+.copy{color:var(--muted);font-size:14px;margin:0}
+.small{font-size:12.5px;color:var(--muted)}
+
+/* 刊物式的请柬：编号、细线、大号衬线，一页能读完 */
+.meta-bar{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  margin:0 -24px;padding:0 24px 10px;border-bottom:1px solid var(--line);
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#98a09a;
+}
+
+.disp{
+  font-family:var(--serif);font-size:38px;line-height:1.25;font-weight:400;
+  letter-spacing:.06em;margin:26px 0 0;
+}
+.disp-en{
+  font-family:var(--garamond);font-style:italic;font-size:21px;color:var(--accent);
+  margin:5px 0 0;letter-spacing:.03em;
+}
+.stand{
+  margin:18px 0 0;font-size:13.5px;line-height:1.95;color:#4c5a55;max-width:23em;
+}
+
+.blk{margin-top:34px}
+.blk-head{
+  display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:baseline;
+  padding-bottom:9px;border-bottom:1px solid var(--line);
+}
+.num{font-family:var(--garamond);font-size:12px;letter-spacing:.08em;color:var(--accent)}
+.blk-t{font-family:var(--serif);font-size:20px;font-weight:400;margin:0;letter-spacing:.04em}
+.blk-en{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#a3aaa4;font-family:var(--sans)}
+.blk-body{padding-top:15px}
+.lead{font-family:var(--serif);font-size:19px;line-height:1.7;margin:0 0 14px;letter-spacing:.03em}
+.note{font-size:11.5px;color:var(--muted);margin:14px 0 0}
+
+/* 倒计时：一行数字，不喧宾夺主 */
+.count{
+  display:flex;align-items:baseline;gap:2px;border-top:1px solid var(--line);
+  padding-top:11px;font-family:var(--garamond);font-size:19px;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.count-k{font-family:var(--sans);font-size:10px;letter-spacing:.18em;color:#a3aaa4;margin-right:8px}
+.count b{font-weight:400;min-width:1.5em;font-size:21px;color:var(--deep)}
+.count i{font-style:normal;font-family:var(--sans);font-size:10px;color:#a3aaa4;margin-right:9px}
+
+/* 深色图版：整幅出血，纸上落一块墨 */
+.band{margin:36px -24px 0;padding:24px 24px 22px;background:var(--deep);color:#e6ebe7}
+.band .blk-head{border-color:rgba(245,240,232,.2)}
+.band .num{color:#9fb6ba}
+.band .blk-t{color:#f5f0e8}
+.band .blk-en{color:rgba(245,240,232,.45)}
+.band-lead{font-size:12.5px;line-height:1.9;color:#c9d3d0;margin:14px 0 0}
+.plan{margin:14px -24px 0;line-height:0}
+.plan svg{display:block;width:100%;height:auto}
+.band-meta{
+  display:flex;justify-content:space-between;gap:8px;margin-top:15px;padding-top:11px;
+  border-top:1px solid rgba(245,240,232,.2);
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#9fb6ba;
+}
+
+/* 流程行 */
+.srow{display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}
+.srow time{font-family:var(--garamond);font-size:14px;color:var(--accent);letter-spacing:.06em}
+.srow p{margin:0;font-size:14px;letter-spacing:.04em}
+.srow span{display:block;font-size:10.5px;color:var(--muted);margin-top:3px}
+
+/* 色板 */
+.palette{display:flex;gap:6px;margin-top:16px}
+.palette div{flex:1;min-width:0}
+.palette i{display:block;height:42px}
+.palette span{display:block;font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5}
+.palette em{display:block;font-style:italic;font-family:var(--garamond);font-size:10px;color:#a3aaa4}
+
+.sign{margin:22px 0 0;font-family:var(--garamond);font-style:italic;font-size:15px;color:var(--accent);letter-spacing:.04em}
+
+.cta{margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+
+/* ---------------- 组件 ---------------- */
+
+.btn{
+  display:block;width:100%;min-height:46px;
+  border:1px solid var(--deep);background:var(--deep);color:#f5f0e8;
+  border-radius:0;font-family:var(--sans);font-size:13px;
+  letter-spacing:.14em;cursor:pointer;
+}
+.btn:active{opacity:.92}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost.inv{color:#e6ebe7;border-color:rgba(245,240,232,.35)}
+.btn.link{background:none;border:0;color:var(--muted);font-size:13px;min-height:44px;letter-spacing:.04em}
+
+.row{display:flex;gap:10px}
+.row>*{flex:1;min-width:0}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:7px;letter-spacing:.05em}
+input[type=text],textarea,select{
+  width:100%;min-height:46px;padding:11px 13px;
+  font-size:16px;font-family:var(--sans);color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:2px;
+  outline:none;appearance:none;
+}
+textarea{min-height:76px;resize:vertical;line-height:1.6}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+
+.seg{display:flex;gap:8px}
+.seg button{
+  flex:1;min-height:46px;border:1px solid var(--line);background:var(--card);
+  border-radius:2px;font-family:var(--sans);font-size:14.5px;color:var(--muted);cursor:pointer;
+}
+.seg button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(94,126,140,.10)}
+
+.hint{font-size:12px;color:var(--muted);margin:8px 0 0}
+
+/* 编号卡：靠发丝线和留白撑住，不加阴影 */
+.ticket{
+  border:1px solid var(--accent);padding:22px 20px;
+  text-align:center;position:relative;background:var(--card);
+}
+.ticket .k{font-size:10.5px;letter-spacing:.3em;color:var(--muted);margin:0}
+.ticket .no{font-family:var(--serif);font-size:42px;line-height:1.1;color:var(--accent);margin:6px 0 2px}
+.ticket .no .pre{font-family:var(--sans);font-size:11px;letter-spacing:.22em;color:var(--muted);margin-right:4px;vertical-align:5px}
+.ticket .who{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+
+/* 分享卡片：微信里看到的就是这张方图 */
+.share-card{
+  width:118px;height:118px;flex:0 0 auto;
+  border:1px solid var(--line);background:var(--card);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;text-align:center;
+}
+
+/* 相册：拍立得式的白边与轻微倾斜 */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.polaroid{background:#fbf8f1;border:1px solid #ded7c8;padding:7px 7px 0;transform:rotate(var(--tilt,0deg))}
+.photo{aspect-ratio:1/1;background:
+  linear-gradient(160deg,#d9e0dc,#bfc9c4 55%,#a7b3ae);
+  position:relative;overflow:hidden}
+.photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(20deg,rgba(94,76,58,.22),transparent 60%);
+}
+.polaroid figcaption{
+  font-size:11.5px;color:var(--muted);padding:8px 3px 9px;
+  display:flex;justify-content:space-between;gap:6px;
+}
+.polaroid figcaption span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.polaroid figcaption em{font-family:var(--script);font-style:italic;color:var(--accent)}
+
+.filters{display:flex;gap:8px;margin-top:16px}
+.filters button{
+  min-height:44px;padding:0 15px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);
+  color:var(--muted);font-family:var(--sans);font-size:13px;cursor:pointer;
+}
+.filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+
+/* 底部导航 */
+.tabbar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);background:rgba(245,240,232,.96);
+  margin-top:26px;
+}
+.tabbar button{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  min-height:58px;text-decoration:none;color:var(--muted);font-size:11px;letter-spacing:.1em;
+  border:0;background:none;appearance:none;font-family:var(--sans);cursor:pointer;padding:0;
+}
+.tabbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4}
+.tabbar button[aria-current="page"]{color:var(--accent)}
+
+/* 轻提示 */
+.toast{
+  position:fixed;left:50%;bottom:40px;transform:translate(-50%,8px);
+  background:var(--ink);color:var(--paper);font-size:13px;
+  padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;z-index:50;max-width:78vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* 后台：桌面视图，信息密度更高 */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0}
+.stats div{background:var(--card);padding:14px 16px}
+.stats b{font-family:var(--serif);font-size:24px;display:block;line-height:1.25}
+.stats span{font-size:11.5px;color:var(--muted)}
+
+.rrow{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.rrow .n{font-family:var(--serif);color:var(--accent);font-size:14px}
+.rrow .who{font-size:14.5px}
+.rrow .meta{font-size:12px;color:var(--muted);margin-top:2px}
+.rrow .msg{font-size:12.5px;color:var(--accent);margin-top:3px}
+
+.audit{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.audit .ph{background:var(--card);border:1px solid var(--line)}
+.audit .ph .photo{aspect-ratio:4/3;border-bottom:1px solid var(--line)}
+.audit .ph .bar{display:flex;gap:6px;padding:8px}
+.audit .ph .bar button{
+  flex:1;min-height:32px;font-size:11.5px;border:1px solid var(--line);
+  background:var(--card);cursor:pointer;color:var(--ink);font-family:var(--sans);
+}
+.audit .ph .bar button[data-act="hide"]{color:var(--accent);border-color:#cfd8d4}
+
+/* ---------------- 桌面端：两栏 ---------------- */
+
+@media (min-width:960px){
+  .shell{display:grid;grid-template-columns:290px minmax(0,1fr);gap:0;max-width:1100px;margin:0 auto}
+  .rail{position:sticky;top:0;align-self:start;height:100vh;padding:48px 28px 32px;
+        border-right:1px solid var(--line);display:flex;flex-direction:column}
+  .rail-nav{flex-direction:column;overflow:visible;gap:2px;margin-top:6px}
+  .rail-nav button{
+    border:0;background:none;border-radius:0;padding:0 0 0 18px;
+    min-height:40px;text-align:left;font-size:14px;color:var(--muted);
+    position:relative;
+  }
+  .rail-nav button::before{
+    content:attr(data-n);position:absolute;left:0;top:50%;transform:translateY(-50%);
+    font-family:var(--script);font-style:italic;font-size:11px;color:#b9a992;
+  }
+  .rail-nav button[aria-selected="true"]{color:var(--accent);background:none}
+  .rail-nav button[aria-selected="true"]::before{color:var(--accent)}
+  .rail-meta{display:block;margin-top:auto;padding-top:26px;border-top:1px solid var(--line)}
+  .rail-meta p{margin:0 0 10px;font-size:12px;color:var(--muted);line-height:1.8}
+  .rail-points{display:block;margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+  .rail-points p{margin:0 0 14px;font-size:12px;line-height:1.75;color:var(--muted)}
+  .rail-points b{display:block;font-family:var(--serif);font-weight:400;font-size:13px;color:var(--ink);margin-bottom:2px}
+  .swatches{display:flex;gap:5px;margin-bottom:14px}
+  .swatches i{width:22px;height:22px;display:block;border:1px solid rgba(0,0,0,.06)}
+  .stage{padding:48px 40px 60px;min-height:100vh}
+  .screen{border-radius:2px;box-shadow:0 22px 44px -32px rgba(70,54,40,.5)}
+  .note{padding-left:0;padding-right:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============ 左栏：设计说明 ============ -->
+  <aside class="rail">
+    <p class="rail-k">Direction sheet</p>
+    <h1>婚礼请柬 H5</h1>
+    <p class="rail-sub">按「共生之序」那版 moodboard 重做的请柬：灰调蓝、原木、苔绿与纸白，大号衬线加章节编号，一页读完。其余四屏沿用同一套色板。</p>
+
+    <nav class="rail-nav" aria-label="页面切换">
+      <button type="button" data-view="invite" data-n="01" aria-selected="true">请柬</button>
+      <button type="button" data-view="rsvp" data-n="02" aria-selected="false">赴约</button>
+      <button type="button" data-view="album" data-n="03" aria-selected="false">相册</button>
+      <button type="button" data-view="mine" data-n="04" aria-selected="false">我的</button>
+      <button type="button" data-view="admin" data-n="05" aria-selected="false">后台</button>
+    </nav>
+
+    <div class="rail-points">
+      <p><b>一页读完</b>请柬不做功能，只把时间、地点、怎么来、穿什么讲清楚，够人做决定。</p>
+      <p><b>像一本刊物</b>章节编号、发丝线、右对齐的小字注释；不用卡片，不加阴影。</p>
+      <p><b>一个深色整幅</b>场地图版整块出血，其余全是纸白，靠这一处对比撑住整页。</p>
+      <p><b>颜色克制</b>深墨绿做字，灰调蓝做强调，苔绿与原木只在色板里出现。</p>
+    </div>
+
+    <div class="rail-meta">
+      <div class="swatches" aria-hidden="true">
+        <i style="background:#f5f0e8"></i><i style="background:#5e7e8c"></i>
+        <i style="background:#c9a989"></i><i style="background:#8f9e74"></i>
+        <i style="background:#2c3e43"></i>
+      </div>
+      <p>纸 #F5F0E8　墨 #22302E　深 #2C3E43<br>蓝 #5E7E8C　木 #C9A989　苔 #8F9E74</p>
+      <p>标题用 Noto Serif CJK，西文用 EB Garamond；正文 Noto Sans CJK，字号只留三档。</p>
+      <p style="color:#a8998a">内容为演示数据，照片位置是占位块。</p>
+    </div>
+  </aside>
+
+  <!-- ============ 右侧：屏幕 ============ -->
+  <main class="stage">
+    <div class="screen" id="screen">
+
+      <!-- ---------- 01 请柬 ---------- -->
+      <section class="view" data-view="invite">
+
+        <div class="meta-bar">
+          <span>2026.12.20</span>
+          <span>北京 · 朝阳</span>
+          <span class="mb-r">Invitation</span>
+        </div>
+
+        <h1 class="disp">程一 &amp; 沈晚</h1>
+        <p class="disp-en">an invitation</p>
+        <p class="stand">十一月的光是斜的。我们把仪式挪到正午，等它落在木地板上——也等你来。</p>
+
+        <section class="blk">
+          <div class="blk-head"><span class="num">01</span><h2 class="blk-t">仪式</h2><span class="blk-en">Ceremony</span></div>
+          <div class="blk-body">
+            <p class="lead">十二月二十日，星期日<br>午前 11:58</p>
+            <div class="count">
+              <span class="count-k">还有</span>
+              <b id="cd-d">--</b><i>天</i><b id="cd-h">--</b><i>时</i><b id="cd-m">--</b><i>分</i><b id="cd-s">--</b><i>秒</i>
+            </div>
+            <p class="note">请提前十分钟落座。主厅在走廊尽头。</p>
+          </div>
+        </section>
+
+        <section class="band">
+          <div class="blk-head"><span class="num">02</span><h2 class="blk-t">场地</h2><span class="blk-en">the venue</span></div>
+          <p class="band-lead">三层。签到在前厅，仪式在主厅，露台推门就是。</p>
+
+          <div class="plan">
+            <svg viewBox="0 0 360 320" role="img" aria-label="艺术中心三层场地平面示意">
+              <rect width="360" height="320" fill="#2c3e43"/>
+              <rect x="10" y="10" width="340" height="300" fill="none" stroke="#f5f0e8" stroke-opacity=".16"/>
+
+              <g stroke="#f5f0e8" stroke-opacity=".45" stroke-width="1" fill="none">
+                <rect x="28" y="116" width="96" height="92"/>
+                <rect x="124" y="156" width="40" height="40"/>
+                <rect x="164" y="44" width="164" height="188"/>
+                <rect x="170" y="50" width="152" height="176" stroke-opacity=".2"/>
+                <rect x="164" y="238" width="164" height="30" stroke-dasharray="5 4"/>
+              </g>
+
+              <g stroke="#f5f0e8" stroke-opacity=".13" fill="none">
+                <circle cx="206" cy="118" r="7.5"/><circle cx="248" cy="118" r="7.5"/><circle cx="290" cy="118" r="7.5"/>
+                <circle cx="206" cy="156" r="7.5"/><circle cx="248" cy="156" r="7.5"/><circle cx="290" cy="156" r="7.5"/>
+                <circle cx="206" cy="194" r="7.5"/><circle cx="248" cy="194" r="7.5"/><circle cx="290" cy="194" r="7.5"/>
+              </g>
+
+              <polyline points="34,268 34,208 62,208 62,168 164,168" fill="none"
+                        stroke="#bfd1d4" stroke-width="1.6" stroke-dasharray="7 5" stroke-linecap="round"/>
+              <polygon points="164,168 152,162 152,174" fill="#bfd1d4"/>
+
+              <g font-family="EB Garamond, Noto Serif, serif" font-size="9.5" letter-spacing="2.2"
+                 fill="#f5f0e8" fill-opacity=".4">
+                <text x="28" y="108">FOYER</text>
+                <text x="164" y="36">MAIN HALL</text>
+              </g>
+
+              <g font-family="Noto Sans CJK SC, sans-serif" font-size="11" fill="#e6ebe7">
+                <rect x="38" y="132" width="72" height="20" fill="none" stroke="#f5f0e8" stroke-opacity=".42"/>
+                <text x="74" y="146" text-anchor="middle">01 签到</text>
+
+                <rect x="178" y="60" width="102" height="22" fill="none" stroke="#f5f0e8" stroke-opacity=".42"/>
+                <text x="229" y="75" text-anchor="middle">02 仪式主厅</text>
+
+                <rect x="178" y="244" width="92" height="19" fill="none" stroke="#f5f0e8" stroke-opacity=".42"/>
+                <text x="224" y="257" text-anchor="middle">03 露台</text>
+
+                <text x="34" y="288" fill="#bfd1d4" font-size="10">入口</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="band-meta">
+            <span>建国路 88 号</span><span>艺术中心 3F</span><span>大望路站 B 口</span>
+          </div>
+
+          <div class="row" style="margin-top:16px">
+            <button class="btn ghost inv" type="button" data-toast="地址已复制">复制地址</button>
+            <button class="btn ghost inv" type="button" data-toast="地图将在正式版接入高德">查看地图</button>
+          </div>
+        </section>
+
+        <section class="blk">
+          <div class="blk-head"><span class="num">03</span><h2 class="blk-t">一天</h2><span class="blk-en">the day</span></div>
+          <div class="blk-body">
+            <div class="srow"><time>11:00</time><div><p>签到</p><span>Check-in　进门报名字，编号卡在门口</span></div></div>
+            <div class="srow"><time>11:58</time><div><p>仪式</p><span>Ceremony　提前十分钟落座就好</span></div></div>
+            <div class="srow"><time>12:30</time><div><p>午宴</p><span>Dinner　相册开着，你拍的直接往里放</span></div></div>
+          </div>
+        </section>
+
+        <section class="blk">
+          <div class="blk-head"><span class="num">04</span><h2 class="blk-t">穿什么</h2><span class="blk-en">dress code</span></div>
+          <div class="blk-body">
+            <p>不用隆重。别穿纯白，也别穿太高的跟——三层是木地板，还有一段楼梯。想配合我们的话，往这几个颜色靠。</p>
+            <div class="palette">
+              <div><i style="background:#5e7e8c"></i><span>灰调蓝<em>blue</em></span></div>
+              <div><i style="background:#c9a989"></i><span>原木<em>tan</em></span></div>
+              <div><i style="background:#8f9e74"></i><span>苔绿<em>moss</em></span></div>
+              <div><i style="background:#d9e4e2"></i><span>雾白<em>mist</em></span></div>
+              <div><i style="background:#6b7f68"></i><span>植物绿<em>leaf</em></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="blk">
+          <div class="blk-head"><span class="num">05</span><h2 class="blk-t">为什么是这儿</h2><span class="blk-en">why here</span></div>
+          <div class="blk-body">
+            <p>第一次来是看一个摄影展。展厅就在三层，出口连着露台，那天风大，我们站在栏杆边看了很久建国路上的车灯。</p>
+            <p style="margin-top:12px">后来看场地，宴会厅其实都差不多：层高够、灯光好、桌数摆得下。只有这里不太一样——仪式就在展厅隔壁，宾客可以先看展，再坐下吃饭；中途想透口气，推门就是露台。</p>
+            <p style="margin-top:12px">所以仪式定在 11:58。不是为了什么吉时，是那会儿阳光刚好斜进主厅，落在木地板上。</p>
+            <p class="sign">Cheng Yi &amp; Shen Wan</p>
+          </div>
+        </section>
+
+        <div class="cta">
+          <button class="btn" type="button" data-go="rsvp">告诉我们你来不来</button>
+          <p class="hint" style="text-align:center;margin-top:12px">只需要填一次，之后能回来改。</p>
+        </div>
+      </section>
+      <!-- ---------- 02 赴约 ---------- -->
+      <section class="view" data-view="rsvp" hidden>
+        <p class="rail-k" style="margin:0 0 12px">R.S.V.P.</p>
+        <h2 class="sec" style="font-size:26px;margin-bottom:8px">告诉我，你来不来</h2>
+        <p class="copy">填一次就够。之后想起来什么，随时回来改，我们只认最后一次。</p>
+
+        <div style="margin-top:24px">
+          <div class="field">
+            <label for="f-name">怎么称呼你</label>
+            <input id="f-name" type="text" value="小林一家" placeholder="例如：小林一家">
+            <p class="hint">会印在你的编号卡上，也会显示在你上传的照片下面。</p>
+          </div>
+
+          <div class="field">
+            <label>是否出席</label>
+            <div class="seg" data-seg="attend">
+              <button type="button" aria-pressed="true">我会到</button>
+              <button type="button" aria-pressed="false">来不了</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="f-adults">成人</label>
+              <input id="f-adults" type="text" value="2" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="f-kids">儿童</label>
+              <input id="f-kids" type="text" value="1" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-time">大概几点到</label>
+            <input id="f-time" type="text" value="11:20" placeholder="例如：11:20">
+          </div>
+
+          <div class="field">
+            <label for="f-transport">怎么过来</label>
+            <select id="f-transport">
+              <option>自驾</option>
+              <option>地铁 / 公交</option>
+              <option>高铁 / 飞机到京</option>
+              <option>打车</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>要不要我们接</label>
+            <div class="seg" data-seg="pickup">
+              <button type="button" aria-pressed="true">不用，我自己到</button>
+              <button type="button" aria-pressed="false">需要，麻烦接一下</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>要不要帮你订一晚酒店</label>
+            <div class="seg" data-seg="hotel">
+              <button type="button" aria-pressed="false">不用</button>
+              <button type="button" aria-pressed="true">需要</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-diet">忌口或过敏</label>
+            <textarea id="f-diet" placeholder="例如：不吃香菜、海鲜过敏、素食">海鲜过敏，孩子不吃辣</textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-msg">想对新人说的话</label>
+            <textarea id="f-msg" placeholder="随便写两句，我们会看"></textarea>
+          </div>
+
+          <button class="btn" type="button" id="rsvpSave">保存信息</button>
+          <p class="hint" style="text-align:center;margin-top:12px" id="rsvpState">当前还没有提交</p>
+        </div>
+      </section>
+
+      <!-- ---------- 03 相册 ---------- -->
+      <section class="view" data-view="album" hidden>
+        <h2 class="sec" style="font-size:26px;margin-bottom:8px">共同留下这一刻</h2>
+        <p class="copy" id="albumSub">已经有 128 张了，其中 3 张是你拍的。</p>
+
+        <div class="row" style="margin-top:20px">
+          <button class="btn" type="button" data-toast="演示稿里没有接摄像头">拍一张</button>
+          <button class="btn ghost" type="button" data-toast="演示稿里没有接上传通道">从相册选</button>
+        </div>
+        <p class="hint">正式版会自动压到 1600 像素长边再上传，省流量也更快。</p>
+
+        <div class="filters" role="group" aria-label="筛选">
+          <button type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" data-filter="mine" aria-pressed="false">我的</button>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <figure class="polaroid" style="--tilt:-1.2deg" data-mine="0">
+            <div class="photo"></div>
+            <figcaption><span>王阿姨</span><em>11:12</em></figcaption>
+          </figure>
+          <figure class="polaroid" style="--tilt:.9deg" data-mine="1">
+            <div class="photo"></div>
+            <figcaption><span>小林一家</span><em>11:26</em></figcaption>
+          </figure>
+          <figure class="polaroid" style="--tilt:.6deg" data-mine="0">
+            <div class="photo"></div>
+            <figcaption><span>周航</span><em>12:04</em></figcaption>
+          </figure>
+          <figure class="polaroid" style="--tilt:-.8deg" data-mine="1">
+            <div class="photo"></div>
+            <figcaption><span>小林一家</span><em>12:31</em></figcaption>
+          </figure>
+        </div>
+
+        <p class="hint" style="margin-top:16px">照片按时间倒序，谁拍的会署在她自己起的名字下面。正式版翻到底会自动接着加载。</p>
+      </section>
+
+      <!-- ---------- 04 我的 ---------- -->
+      <section class="view" data-view="mine" hidden>
+        <div class="ticket">
+          <p class="k">WELCOME TO OUR WEDDING</p>
+          <p class="script" style="font-size:20px;margin:8px 0 2px">with love</p>
+          <p class="k" style="margin-top:12px">专属编号</p>
+          <p class="no"><span class="pre">No.</span>007</p>
+          <p class="who">程一 &amp; 沈晚　2026.12.20</p>
+        </div>
+
+        <h2 class="sec" style="font-size:24px;margin-top:28px">把你的安排，告诉我们</h2>
+        <p class="copy">接送、署名、你拍的照片，都在这一页。</p>
+
+        <hr class="hair">
+
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <div>
+            <p style="margin:0;font-size:15px">我的接送与回执</p>
+            <p class="small" style="margin-top:5px">已回执　2 成人 + 1 儿童　需接送</p>
+          </div>
+          <button class="btn link" type="button" data-go="rsvp" style="width:auto">去修改</button>
+        </div>
+
+        <hr class="hair">
+
+        <p style="margin:0;font-size:15px">编辑我的署名</p>
+        <p class="small" style="margin:5px 0 14px">照片上的名字，留一个你喜欢的称呼。</p>
+        <div class="row">
+          <input id="sigInput" type="text" value="小林" style="flex:2">
+          <button class="btn" type="button" id="sigSave" style="flex:1;max-width:104px">保存</button>
+        </div>
+        <p class="hint" id="sigNow">当前署名：小林</p>
+
+        <hr class="hair">
+
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn ghost" type="button" data-go="album" style="text-align:left;padding:14px 16px;line-height:1.5;border-radius:2px">
+            <span style="display:block;font-size:14px">我上传的照片</span>
+            <span class="small" style="display:block">3 张</span>
+          </button>
+          <button class="btn ghost" type="button" data-go="album" style="text-align:left;padding:14px 16px;line-height:1.5;border-radius:2px">
+            <span style="display:block;font-size:14px">分享今日照片</span>
+            <span class="small" style="display:block">留一份喜悦</span>
+          </button>
+        </div>
+
+        <button class="btn ghost" type="button" data-toast="演示稿：正式版会复制你的专属链接">把请柬转发给亲友</button>
+        <p class="hint" style="text-align:center">转发出去的是你自己的链接，对方打开会有自己的编号。</p>
+
+        <div style="display:flex;gap:14px;align-items:center;margin-top:24px">
+          <div class="share-card">
+            <span class="script" style="font-size:11px">with love</span>
+            <span style="font-family:var(--serif);font-size:13px;line-height:1.5;white-space:nowrap">程一 &amp; 沈晚</span>
+            <span class="small" style="font-size:9px;letter-spacing:.16em;margin-top:2px">2026.12.20</span>
+          </div>
+          <div>
+            <p style="margin:0;font-size:13.5px">微信里显示的就是这张方图</p>
+            <p class="small" style="margin-top:6px">标题「程一 &amp; 沈晚 · 婚礼邀请」，描述「12 月 20 日，等你来见证。」要用认证公众号的 JS-SDK 注入，普通链接只能改标题。</p>
+          </div>
+        </div>
+
+        <p class="small" style="text-align:center;margin-top:26px">
+          <button class="btn link" type="button" data-go="admin" style="width:auto">进入后台（仅新人）</button>
+        </p>
+      </section>
+
+      <!-- ---------- 05 后台 ---------- -->
+      <section class="view" data-view="admin" hidden>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div>
+            <p class="rail-k" style="margin:0 0 8px">Admin</p>
+            <h2 class="sec" style="font-size:23px;margin:0">筹备看板</h2>
+          </div>
+          <span class="small" style="text-align:right;line-height:1.5">仅新人可见<br>独立密码</span>
+        </div>
+
+        <div class="stats">
+          <div><b>46</b><span>名单人数</span></div>
+          <div><b>31</b><span>已回执，还差 15 位</span></div>
+          <div><b>72</b><span>预计到场</span></div>
+          <div><b>6</b><span>需要接站</span></div>
+          <div style="grid-column:span 2"><b>9</b><span>需要住宿</span></div>
+        </div>
+
+        <p class="sec" style="font-size:16px;margin-top:22px">最新回执</p>
+        <div class="rrow">
+          <span class="n">012</span>
+          <div>
+            <div class="who">王阿姨一家</div>
+            <div class="meta">3 成人　需接送　约 11:10 到　自驾</div>
+            <div class="meta">忌口：无糖，糖尿病饮食</div>
+            <div class="msg">「祝你们白头到老，别嫌我唠叨。」</div>
+          </div>
+        </div>
+        <div class="rrow">
+          <span class="n">019</span>
+          <div>
+            <div class="who">周航</div>
+            <div class="meta">1 成人　不需要接送　约 11:40 到　地铁</div>
+            <div class="msg">「终于等到这一天。」</div>
+          </div>
+        </div>
+        <div class="rrow">
+          <span class="n">023</span>
+          <div>
+            <div class="who">李老师</div>
+            <div class="meta">2 成人　需要住宿　高铁到京</div>
+            <div class="meta">忌口：素食</div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:18px">
+          <button class="btn ghost" type="button" data-toast="正式版会下载一份带 BOM 的 CSV">导出 CSV</button>
+          <button class="btn ghost" type="button" data-toast="演示稿不会真的刷新">刷新</button>
+        </div>
+
+        <p class="sec" style="font-size:16px;margin-top:30px">待审照片</p>
+        <p class="small" style="margin:0">开了审核开关时，照片先落在这里，你点“展示”才进宾客相册。</p>
+        <div class="audit">
+          <div class="ph">
+            <div class="photo"></div>
+            <div class="bar">
+              <button type="button" data-act="show">展示</button>
+              <button type="button" data-act="hide">隐藏</button>
+            </div>
+          </div>
+          <div class="ph">
+            <div class="photo"></div>
+            <div class="bar">
+              <button type="button" data-act="show">展示</button>
+              <button type="button" data-act="hide">隐藏</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- 底部导航 ---------- -->
+      <nav class="tabbar" id="tabbar" aria-label="主导航">
+        <button type="button" data-go="invite" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 6v13h18V6M3 6l9 7 9-7"/></svg><span>请柬</span>
+        </button>
+        <button type="button" data-go="rsvp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 21c1.2-4.2 4-6.2 7.5-6.2s6.3 2 7.5 6.2"/></svg><span>赴约</span>
+        </button>
+        <button type="button" data-go="album">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10" r="1.5"/><path d="M4 17l5-4 4 3 3-2 4 3"/></svg><span>相册</span>
+        </button>
+        <button type="button" data-go="mine">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h6M9 15h6"/></svg><span>我的</span>
+        </button>
+      </nav>
+
+    </div>
+
+    <p class="note" id="note">整页是一个刊物式的版面：大标题、章节编号、一条深色图版。信息按“要不要来—怎么来—穿什么”的顺序往里收。</p>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var screenEl = document.getElementById('screen');
+  var noteEl = document.getElementById('note');
+  var tabbar = document.getElementById('tabbar');
+
+  var NOTES = {
+    invite: '整页是一个刊物式的版面：大标题、章节编号、一条深色图版。信息按“要不要来—怎么来—穿什么”的顺序往里收。',
+    rsvp: '把“来不来”问清楚，顺便收齐桌数、车辆、房间、忌口这四个真正要用的数。',
+    album: '照片是这种婚礼里唯一会持续产生的 UGC，所以给它一条最短的路径：两步之内完成上传。',
+    mine: '这一屏不给新功能，只把前面填的、拍的汇总成一个人的状态：编号、回执、署名、我的照片。',
+    admin: '后台是同一份数据换个人读。桌面宽度，信息密度可以高一些，因为只有你和伴侣看。'
+  };
+
+  function toast(text) {
+    var el = document.getElementById('toast');
+    el.textContent = text;
+    el.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove('show'); }, 1900);
+  }
+
+  function show(name) {
+    var views = document.querySelectorAll('.view');
+    for (var i = 0; i < views.length; i++) {
+      views[i].hidden = views[i].getAttribute('data-view') !== name;
+    }
+    var railBtns = document.querySelectorAll('.rail-nav button');
+    for (var j = 0; j < railBtns.length; j++) {
+      railBtns[j].setAttribute('aria-selected', String(railBtns[j].getAttribute('data-view') === name));
+    }
+    var tabBtns = tabbar.querySelectorAll('button');
+    for (var k = 0; k < tabBtns.length; k++) {
+      var on = tabBtns[k].getAttribute('data-go') === name;
+      if (on) tabBtns[k].setAttribute('aria-current', 'page');
+      else tabBtns[k].removeAttribute('aria-current');
+    }
+    screenEl.classList.toggle('wide', name === 'admin');
+    tabbar.style.display = name === 'admin' ? 'none' : 'grid';
+    noteEl.textContent = NOTES[name] || '';
+    if (window.innerWidth < 960) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.addEventListener('click', function (e) {
+    var railBtn = e.target.closest('.rail-nav button');
+    if (railBtn) { show(railBtn.getAttribute('data-view')); return; }
+
+    var goBtn = e.target.closest('[data-go]');
+    if (goBtn) { show(goBtn.getAttribute('data-go')); return; }
+
+    var toastBtn = e.target.closest('[data-toast]');
+    if (toastBtn) { toast(toastBtn.getAttribute('data-toast')); }
+  });
+
+  /* 单选组：同一组里只亮一个 */
+  var segBtns = document.querySelectorAll('.seg button');
+  for (var s = 0; s < segBtns.length; s++) {
+    segBtns[s].addEventListener('click', function () {
+      var group = this.parentNode.querySelectorAll('button');
+      for (var i = 0; i < group.length; i++) {
+        group[i].setAttribute('aria-pressed', String(group[i] === this));
+      }
+    });
+  }
+
+  /* 倒计时：真实目标时间，过了就换成一句话 */
+  (function () {
+    var target = new Date('2026-12-20T11:58:00+08:00').getTime();
+    var out = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+    if (!out.d) return;
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function tick() {
+      var left = target - Date.now();
+      if (left <= 0) {
+        var wrap = out.d.parentNode;
+        wrap.innerHTML = '<b style="font-size:16px;color:var(--accent)">就是今天</b>';
+        return;
+      }
+      var day = Math.floor(left / 86400000);
+      out.d.textContent = pad(day);
+      out.h.textContent = pad(Math.floor(left / 3600000) % 24);
+      out.m.textContent = pad(Math.floor(left / 60000) % 60);
+      out.s.textContent = pad(Math.floor(left / 1000) % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* 回执保存 */
+  document.getElementById('rsvpSave').addEventListener('click', function () {
+    var name = document.getElementById('f-name').value.trim() || '亲友';
+    var attending = document.querySelector('[data-seg="attend"] button[aria-pressed="true"]');
+    var state = document.getElementById('rsvpState');
+    if (attending && attending.textContent.indexOf('来不了') > -1) {
+      state.textContent = '已记录：这次来不了，以后还能改。';
+    } else {
+      var adults = document.getElementById('f-adults').value.trim() || '1';
+      var kids = document.getElementById('f-kids').value.trim() || '0';
+      state.textContent = '已记录：' + adults + ' 成人' + (kids !== '0' ? ' + ' + kids + ' 儿童' : '') + '，可以随时回来改。';
+    }
+    toast('已记下，' + name);
+  });
+
+  /* 署名 */
+  document.getElementById('sigSave').addEventListener('click', function () {
+    var v = document.getElementById('sigInput').value.trim() || '亲友';
+    document.getElementById('sigNow').textContent = '当前署名：' + v;
+    toast('署名已更新');
+  });
+
+  /* 相册筛选 */
+  var filters = document.querySelectorAll('[data-filter]');
+  for (var f = 0; f < filters.length; f++) {
+    filters[f].addEventListener('click', function () {
+      var scope = this.getAttribute('data-filter');
+      for (var i = 0; i < filters.length; i++) {
+        filters[i].setAttribute('aria-pressed', String(filters[i] === this));
+      }
+      var cards = document.querySelectorAll('#gallery .polaroid');
+      for (var c = 0; c < cards.length; c++) {
+        cards[c].style.display = (scope === 'mine' && cards[c].getAttribute('data-mine') !== '1') ? 'none' : '';
+      }
+      document.getElementById('albumSub').textContent = scope === 'mine'
+        ? '你拍的 3 张，别人拍的已经收起来了。'
+        : '已经有 128 张了，其中 3 张是你拍的。';
+    });
+  }
+
+  /* 后台审核 */
+  var acts = document.querySelectorAll('.audit [data-act]');
+  for (var a = 0; a < acts.length; a++) {
+    acts[a].addEventListener('click', function () {
+      var cardEl = this.closest('.ph');
+      if (this.getAttribute('data-act') === 'hide') {
+        cardEl.style.opacity = '.35';
+        toast('已隐藏，宾客相册里看不到了');
+      } else {
+        cardEl.style.opacity = '1';
+        toast('已放进宾客相册');
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
